@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./template/mod-jsf-template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:define name="page">Login Page</ui:define>
+
+    <ui:define name="top">
+        <h1>JPA - JSF - FILTER - CRUD</h1>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form styleClass="w3-card-4 monLogin">
+            <div class="w3-container w3-theme-d4 w3-center">
+                <h2>LOGIN FORM</h2>                
+            </div>
+            <div class="w3-container">
+                <p>
+                    <h:inputText value="#{login.identifiant}" styleClass="w3-input w3-border" p:placeholder="Saisir votre identifiant"/>
+                </p>
+                <p>
+                    <h:inputSecret value="#{login.mdp}" styleClass="w3-input w3-border" p:placeholder="Saisir votre mot de passe"/>
+                </p>
+                <p>
+                    <i>
+                        <h:messages styleClass="w3-text-red w3-small"/>
+                    </i>                
+                </p>
+                <p>
+                    <h:commandButton value="Valider" styleClass="w3-btn w3-theme-d4" action="#{login.doLogin()}"/>
+                    <h:commandButton value="Reset" type="reset" styleClass="w3-btn w3-theme-l3 w3-right"/>
+                </p>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

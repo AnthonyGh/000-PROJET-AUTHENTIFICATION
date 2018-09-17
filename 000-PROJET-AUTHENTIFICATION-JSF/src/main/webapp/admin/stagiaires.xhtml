@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../template/mod-jsf-template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="page">Page Liste</ui:define>
+
+    <ui:define name="top">
+        <h1>JPA - JSF - FILTER - CRUD</h1>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form styleClass="w3-card-4">
+            <div class="w3-container w3-theme-d1 w3-center">
+                <h2>LISTE DES STAGIAIRES</h2>
+                         
+            </div>
+            <div class="w3-container">
+                <f:view>
+                    <h:form>
+                        <p>
+                        <h:link rendered="#{login.admin || login.premium}" styleClass="w3-btn w3-small w3-theme-d1" outcome="stagiaire" title="Ajouter un stagiaire à la liste">
+                            <i class="material-icons">person_add</i>
+                        </h:link>
+                       
+                        <h:commandButton styleClass="w3-tiny w3-right w3-btn w3-red"
+                                                   value="Premium"
+                                                   rendered="#{login.premium}" 
+                                                   action="#"/>
+                        <h:commandButton value="Deconnexion" action="#{login.doLogout()}" 
+                                         styleClass="w3-tiny w3-gray w3-btn w3-right"/>
+                        </p>
+                        <P>
+                            <h:dataTable value="#{stagiaireManager.stagiaires}" var="s" 
+                                         styleClass="w3-table-all w3-striped w3-bordered w3-small w3-hoverable"
+                                         headerClass="w3-theme-d1 w3-center">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Id"/>
+                                    </f:facet>
+                                    <h:outputText value="#{s.id}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Version"/>
+                                    </f:facet>
+                                    <h:outputText value="#{s.version}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Date de persistence"/>
+                                    </f:facet>
+                                    <h:outputText value="#{s.datePersistence}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                                    </h:outputText>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Prénom"/>
+                                    </f:facet>
+                                    <h:outputText value="#{s.prenom}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Date de naissance"/>
+                                    </f:facet>
+                                    <h:outputText value="#{s.ddn}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Âge"/>
+                                    </f:facet>
+                                    <h:outputText value="#{s.age} ans"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Email"/>
+                                    </f:facet>
+                                    <h:outputText value="#{s.identifiant}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Role"/>
+                                    </f:facet>
+                                    <h:outputText value="#{s.nomRole}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Voie"/>
+                                    </f:facet>
+                                    <h:outputText value="#{s.adresse.voie}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Ville"/>
+                                    </f:facet>
+                                    <h:outputText value="#{s.adresse.ville}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Actions"/>
+                                    </f:facet>
+                                    <h:commandButton styleClass="w3-tiny w3-btn w3-blue-gray" 
+                                                   value="Modifier"
+                                                   rendered="#{login.admin}" 
+                                                   action="#{stagiaireManager.pageStagiaire(s)}"/>
+                                    <h:commandButton styleClass="w3-tiny w3-right w3-btn w3-red"
+                                                   value="Supprimer"
+                                                   rendered="#{login.admin}" 
+                                                   action="#{stagiaireManager.delete(s.id)}"/>
+                                </h:column>
+                            </h:dataTable>
+                        </P>
+                    </h:form>
+                </f:view>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

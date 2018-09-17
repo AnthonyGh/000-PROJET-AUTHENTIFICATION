@@ -1,0 +1,32 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>fr.m2iformation</groupId>
+		<artifactId>000-PROJET-AUTHENTIFICATION</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>000-PROJET-AUTHENTIFICATION-JSF</artifactId>
+	<packaging>war</packaging>
+
+	<dependencies>
+
+		<dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-api</artifactId>
+            <version>2.2.15</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-impl</artifactId>
+            <version>2.2.15</version>
+        </dependency>
+
+		<dependency>
+			<groupId>fr.m2iformation</groupId>
+			<artifactId>000-PROJET-AUTHENTIFICATION-JPA</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+</project>

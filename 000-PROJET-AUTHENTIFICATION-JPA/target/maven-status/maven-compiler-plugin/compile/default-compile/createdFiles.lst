@@ -1,0 +1,7 @@
+fr\m2iformation\authentification\entities\AbstractEntity.class
+fr\m2iformation\authentification\dao\IStagiaireService.class
+fr\m2iformation\authentification\utils\JpaTools.class
+fr\m2iformation\authentification\entities\Stagiaire.class
+fr\m2iformation\authentification\entities\Adresse.class
+fr\m2iformation\authentification\test\ModJpaTest.class
+fr\m2iformation\authentification\dao\StagiaireService.class

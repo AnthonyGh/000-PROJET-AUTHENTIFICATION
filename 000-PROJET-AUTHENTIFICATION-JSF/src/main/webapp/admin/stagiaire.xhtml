@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../template/mod-jsf-template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="page">Page Liste</ui:define>
+
+    <ui:define name="top">
+        <h1>JPA - JSF - FILTER - CRUD</h1>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form styleClass="w3-card-4 monLogin">
+            <div class="w3-container w3-theme-d4 w3-center">
+                <h2>#{stagiaireManager.titreFormStagiaire}</h2>                
+            </div>
+            <div class="w3-container">
+                <p>
+                <h:inputHidden value="#{stagiaireManager.stagiaire.id}"/>
+                </p>
+                <p>
+                <h:inputText styleClass="w3-input w3-border" p:placeholder="Saisir votre prénom"
+                             required="true" requiredMessage="Le prénom est réquis"
+                             value="#{stagiaireManager.stagiaire.prenom}"/>
+                </p>
+                <p>
+                <h:inputText styleClass="w3-input w3-border" id="ddn" 
+                             required="true" requiredMessage="La date de naissance est requise"
+                             converterMessage="La date de naissance au format jj/mm/aaaa"
+                             p:placeholder="Saisir votre date de naissance (jj/mm/aaaa)"
+                             value="#{stagiaireManager.stagiaire.ddn}">
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                </h:inputText>
+                </p>
+                <p>
+                <h:inputText styleClass="w3-input w3-border" p:placeholder="Saisir votre email"
+                             required="true"
+                             requiredMessage="L'adresse courriel est requise !"
+                             validatorMessage="Format d'email invalide"
+                             value="#{stagiaireManager.stagiaire.identifiant}">
+                    <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                </h:inputText>
+                </p>
+                <p>
+                <h:inputSecret rendered="#{stagiaireManager.stagiaire.id == null}" styleClass="w3-input w3-border" p:placeholder="Saisir votre mot de passe"
+                               value="#{stagiaireManager.stagiaire.mdp}"/>
+                </p>
+                <p>
+                <h:selectOneMenu styleClass="w3-input w3-border"
+                                 required="true"
+                                 requiredMessage="Le role utilisateur est requise !"
+                                 value="#{stagiaireManager.stagiaire.nomRole}">
+                    <f:selectItem itemValue="other" itemLabel="Autres"/>
+                    <f:selectItem itemValue="admin" itemLabel="Administrateur"/>
+                    <f:selectItem itemValue="premium" itemLabel="Premium"/>                        
+                </h:selectOneMenu>
+                </p>
+                <p>
+                <h:inputText styleClass="w3-input w3-border" p:placeholder="Saisir le nom de votre voie"
+                             required="true" requiredMessage="Le nom de la voie est requise"
+                             value="#{stagiaireManager.adresse.voie}"/>
+                </p>
+                <p>
+                <h:inputText styleClass="w3-input w3-border" p:placeholder="Saisir le nom de votre ville"
+                             required="true" requiredMessage="Le nom de la ville est requise"
+                             value="#{stagiaireManager.adresse.ville}"/>
+                </p>
+                <p>
+                    <i>
+                        <h:messages styleClass="w3-text-red w3-small"/>
+                    </i>                
+                </p>
+                <p>
+                <h:commandButton value="Valider" styleClass="w3-btn w3-theme-d4" action="#{stagiaireManager.saveOrMerge()}"/>
+                <h:commandButton value="Reset" type="reset" styleClass="w3-btn w3-theme-l3 w3-right"/>
+                </p>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
